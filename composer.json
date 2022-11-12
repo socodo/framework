@@ -1,0 +1,23 @@
+{
+    "name": "socodo/framework",
+    "description": "Socodo framework",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Socodo\\Framework\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Qroffle Inc.",
+            "email": "socodo@qroffle.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.1",
+        "socodo/injection": "dev-main",
+        "socodo/http": "dev-main"
+    }
+}
