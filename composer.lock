@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6b69134968efe13718d0cda9428348ab",
+    "content-hash": "88bb9dc5c8d3c35c045f58bcb41a7f22",
     "packages": [
         {
             "name": "psr/container",
@@ -202,6 +202,48 @@
                 "source": "https://github.com/socodo/injection/tree/main"
             },
             "time": "2022-11-12T06:42:03+00:00"
+        },
+        {
+            "name": "socodo/router",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/socodo/router.git",
+                "reference": "c9344fc7d8f83c1822796d35172056d648c4b85d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/socodo/router/zipball/c9344fc7d8f83c1822796d35172056d648c4b85d",
+                "reference": "c9344fc7d8f83c1822796d35172056d648c4b85d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1",
+                "socodo/http": "dev-main"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Socodo\\Router\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Qroffle Inc.",
+                    "email": "socodo@qroffle.com"
+                }
+            ],
+            "description": "Router component for socodo.",
+            "support": {
+                "issues": "https://github.com/socodo/router/issues",
+                "source": "https://github.com/socodo/router/tree/main"
+            },
+            "time": "2022-11-17T20:44:47+00:00"
         }
     ],
     "packages-dev": [],
@@ -209,7 +251,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "socodo/injection": 20,
-        "socodo/http": 20
+        "socodo/http": 20,
+        "socodo/router": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
