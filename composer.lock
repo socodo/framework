@@ -120,12 +120,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/socodo/http.git",
-                "reference": "65dd9186d29c76d027ed829904caadc3999aa946"
+                "reference": "1b65c9ffb9b9a4cc294f2793ccd71e61bd91b1d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/socodo/http/zipball/65dd9186d29c76d027ed829904caadc3999aa946",
-                "reference": "65dd9186d29c76d027ed829904caadc3999aa946",
+                "url": "https://api.github.com/repos/socodo/http/zipball/1b65c9ffb9b9a4cc294f2793ccd71e61bd91b1d3",
+                "reference": "1b65c9ffb9b9a4cc294f2793ccd71e61bd91b1d3",
                 "shasum": ""
             },
             "require": {
@@ -154,7 +154,7 @@
                 "issues": "https://github.com/socodo/http/issues",
                 "source": "https://github.com/socodo/http/tree/main"
             },
-            "time": "2022-11-12T21:06:08+00:00"
+            "time": "2022-11-13T18:26:37+00:00"
         },
         {
             "name": "socodo/injection",
