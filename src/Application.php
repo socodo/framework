@@ -4,10 +4,11 @@ namespace Socodo\Framework;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Socodo\Http\Response;
+use Socodo\Framework\Interfaces\ApplicationInterface;
 use Socodo\Injection\Container;
+use Socodo\Injection\Exceptions\EntryNotFoundException;
 
-class Application extends Container
+class Application extends Container implements ApplicationInterface
 {
     /** @var Application The application instance. */
     public static Application $app;
@@ -18,6 +19,8 @@ class Application extends Container
     public function __construct ()
     {
         static::$app = $this;
+
+        $this->registerBaseBindings();
     }
 
     /**
@@ -36,10 +39,12 @@ class Application extends Container
      *
      * @param ServerRequestInterface $request
      * @return ResponseInterface
+     * @throws EntryNotFoundException
      */
     public function handle (ServerRequestInterface $request): ResponseInterface
     {
-        return new Response();
+        $handler = $this->get(Handler::class);
+        return $handler->handle($request);
     }
 
     /**
