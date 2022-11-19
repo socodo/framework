@@ -92,16 +92,31 @@ class Handler implements RequestHandlerInterface
             return $output;
         }
 
-        $response = new Response();
+        $stream = null;
+        $contentType = null;
 
-        if (is_string($output) || is_resource($output))
+        $output = is_resource($output) ? new Stream($output) : $output;
+        if ($output instanceof Stream)
         {
-            return $response->withStatus(200)->withBody(new Stream($output));
+            $stream = $output;
+            $contentType = mime_content_type($output->getMetadata('uri'));
+        }
+
+        if (is_string($output))
+        {
+            $stream = new Stream($output);
+            $contentType = 'text/plain';
         }
 
         if (is_array($output) || is_object($output))
         {
-            return $response->withStatus(200)->withBody(new Stream(json_encode($output, JSON_PRETTY_PRINT)));
+            $stream = new Stream(json_encode($output, JSON_PRETTY_PRINT));
+            $contentType = 'application/json';
+        }
+
+        if ($stream !== null)
+        {
+            return (new Response())->withStatus(200)->withHeader('Content-Type', $contentType)->withBody($stream);
         }
 
         return $this->buildErrorResponse(new \Exception('wip: cannot determine how to build response.')); // TODO

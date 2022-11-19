@@ -84,7 +84,7 @@ class Application extends Container implements ApplicationInterface
             header($headerLine, false);
         }
 
-        echo $response->getBody()->getContents();
+        echo $response->getBody();
         exit();
     }
 }
