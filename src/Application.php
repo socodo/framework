@@ -47,6 +47,7 @@ class Application extends Container implements ApplicationInterface
     public function handle (ServerRequestInterface $request): ResponseInterface
     {
         $this->registerLoadedRouteCollection();
+        $this->set(ServerRequestInterface::class, $request);
 
         $handler = $this->get(Handler::class);
         return $handler->handle($request);
