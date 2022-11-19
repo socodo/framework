@@ -1,6 +1,6 @@
 <?php
 
-namespace Socodo\Framework\Spec;
+namespace Socodo\Framework\Controller;
 
 use Psr\Http\Message\ServerRequestInterface;
 

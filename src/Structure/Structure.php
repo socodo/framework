@@ -1,6 +1,6 @@
 <?php
 
-namespace Socodo\Framework\Spec;
+namespace Socodo\Framework\Structure;
 
 use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
