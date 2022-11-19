@@ -130,6 +130,9 @@ class Handler implements RequestHandlerInterface
      */
     protected function buildErrorResponse (Throwable $e): ResponseInterface
     {
-        return (new Response())->withStatus(500)->withHeader('Content-Type', 'application/json')->withBody(new Stream(json_encode($e)));
+        return (new Response())->withStatus(500)->withHeader('Content-Type', 'application/json')->withBody(new Stream(json_encode([
+            'message' => $e->getMessage(),
+            'trace' => $e->getTrace()
+        ])));
     }
 }
