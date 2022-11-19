@@ -5,28 +5,29 @@ namespace Socodo\Framework;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Socodo\Framework\Interfaces\ApplicationInterface;
 use Socodo\Http\Enums\HttpMethods;
 use Socodo\Http\Response;
 use Socodo\Http\Stream;
+use Socodo\Router\Interfaces\RouteCollectionInterface;
 use Socodo\Router\Route;
-use Socodo\Router\RouteCollection;
 use Throwable;
 
 class Handler implements RequestHandlerInterface
 {
-    /** @var Application App instance. */
-    protected Application $app;
+    /** @var ApplicationInterface App instance. */
+    protected ApplicationInterface $app;
 
-    /** @var RouteCollection Route collection instance. */
-    protected RouteCollection $collection;
+    /** @var RouteCollectionInterface Route collection instance. */
+    protected RouteCollectionInterface $collection;
 
     /**
      * Constructor.
      *
-     * @param Application $app
-     * @param RouteCollection $collection
+     * @param ApplicationInterface $app
+     * @param RouteCollectionInterface $collection
      */
-    public function __construct (Application $app, RouteCollection $collection)
+    public function __construct (ApplicationInterface $app, RouteCollectionInterface $collection)
     {
         $this->app = $app;
         $this->collection = $collection;

@@ -7,11 +7,15 @@ use Psr\Http\Message\ServerRequestInterface;
 use Socodo\Framework\Interfaces\ApplicationInterface;
 use Socodo\Injection\Container;
 use Socodo\Injection\Exceptions\EntryNotFoundException;
+use Socodo\Router\Interfaces\LoaderInterface;
+use Socodo\Router\Interfaces\RouteCollectionInterface;
+use Socodo\Router\Loaders\AttributeLoader;
+use Socodo\Router\Router;
 
 class Application extends Container implements ApplicationInterface
 {
-    /** @var Application The application instance. */
-    public static Application $app;
+    /** @var ApplicationInterface The application instance. */
+    public static ApplicationInterface $app;
 
     /**
      * Constructor.
@@ -19,7 +23,6 @@ class Application extends Container implements ApplicationInterface
     public function __construct ()
     {
         static::$app = $this;
-
         $this->registerBaseBindings();
     }
 
@@ -35,6 +38,21 @@ class Application extends Container implements ApplicationInterface
     }
 
     /**
+     * Get loaded route collection.
+     *
+     * @return RouteCollectionInterface
+     * @throws EntryNotFoundException
+     */
+    protected function getLoadedRouteCollection (): RouteCollectionInterface
+    {
+        $this->set(LoaderInterface::class, new AttributeLoader('App\\'));
+
+        /** @var Router $router */
+        $router = $this->get(Router::class);
+        return $router->getCollection();
+    }
+
+    /**
      * Handle HTTP request.
      *
      * @param ServerRequestInterface $request
@@ -43,6 +61,8 @@ class Application extends Container implements ApplicationInterface
      */
     public function handle (ServerRequestInterface $request): ResponseInterface
     {
+        $this->getLoadedRouteCollection();
+
         $handler = $this->get(Handler::class);
         return $handler->handle($request);
     }

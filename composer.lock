@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bc6cdefc1de0cbc74ccd2d223dcbaa4",
+    "content-hash": "0e6a0360c17a6da95780230bee849197",
     "packages": [
         {
             "name": "psr/container",
@@ -262,23 +262,22 @@
         },
         {
             "name": "socodo/router",
-            "version": "dev-main",
+            "version": "0.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/socodo/router.git",
-                "reference": "c9344fc7d8f83c1822796d35172056d648c4b85d"
+                "reference": "f290449f58818e8226931a916cd9be873deeb1a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/socodo/router/zipball/c9344fc7d8f83c1822796d35172056d648c4b85d",
-                "reference": "c9344fc7d8f83c1822796d35172056d648c4b85d",
+                "url": "https://api.github.com/repos/socodo/router/zipball/f290449f58818e8226931a916cd9be873deeb1a7",
+                "reference": "f290449f58818e8226931a916cd9be873deeb1a7",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
                 "socodo/http": "dev-main"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -298,9 +297,9 @@
             "description": "Router component for socodo.",
             "support": {
                 "issues": "https://github.com/socodo/router/issues",
-                "source": "https://github.com/socodo/router/tree/main"
+                "source": "https://github.com/socodo/router/tree/0.0.1"
             },
-            "time": "2022-11-17T20:44:47+00:00"
+            "time": "2022-11-19T00:57:08+00:00"
         }
     ],
     "packages-dev": [],
@@ -309,7 +308,6 @@
     "stability-flags": {
         "socodo/injection": 20,
         "socodo/http": 20,
-        "socodo/router": 20,
         "psr/http-server-handler": 20
     },
     "prefer-stable": false,
