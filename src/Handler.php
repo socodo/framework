@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Socodo\Framework\Interfaces\ApplicationInterface;
+use Socodo\Framework\Interfaces\StructureInterface;
 use Socodo\Http\Enums\HttpMethods;
 use Socodo\Http\Response;
 use Socodo\Http\Stream;
@@ -90,6 +91,11 @@ class Handler implements RequestHandlerInterface
         if ($output instanceof ResponseInterface)
         {
             return $output;
+        }
+
+        if ($output instanceof StructureInterface)
+        {
+            return $output->buildResponse();
         }
 
         $stream = null;
