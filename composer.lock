@@ -273,12 +273,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/socodo/injection.git",
-                "reference": "e6a75b19e8ecc0176d22d0ae0ea81272862bb713"
+                "reference": "e34577189d1a8f2b16b8cf0cb0fe562575b349e8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/socodo/injection/zipball/e6a75b19e8ecc0176d22d0ae0ea81272862bb713",
-                "reference": "e6a75b19e8ecc0176d22d0ae0ea81272862bb713",
+                "url": "https://api.github.com/repos/socodo/injection/zipball/e34577189d1a8f2b16b8cf0cb0fe562575b349e8",
+                "reference": "e34577189d1a8f2b16b8cf0cb0fe562575b349e8",
                 "shasum": ""
             },
             "require": {
@@ -312,7 +312,7 @@
                 "issues": "https://github.com/socodo/injection/issues",
                 "source": "https://github.com/socodo/injection/tree/main"
             },
-            "time": "2022-11-18T18:27:30+00:00"
+            "time": "2022-11-19T06:40:26+00:00"
         },
         {
             "name": "socodo/router",

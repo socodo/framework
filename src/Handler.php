@@ -67,7 +67,7 @@ class Handler implements RequestHandlerInterface
             if (is_array($matched['controller']))
             {
                 [ $className, $methodName ] = $matched['controller'];
-                $output = $this->app->call($className, $methodName);
+                $output = $this->app->call($className, $methodName, $matched['params']);
                 return $this->buildResponse($output);
             }
 
