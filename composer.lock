@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d42dbac49a9fe423b565026bd61972e0",
+    "content-hash": "2fe6d83efcfbd648fe35140534cc5055",
     "packages": [
         {
             "name": "psr/container",
@@ -312,21 +312,25 @@
         },
         {
             "name": "socodo/router",
-            "version": "0.0.4",
+            "version": "0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/socodo/router.git",
-                "reference": "aff5b0d9c0315f3600e1ea5060844b5b56caf986"
+                "reference": "6be45b76124db6bf49456711b60da40f7047b52e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/socodo/router/zipball/aff5b0d9c0315f3600e1ea5060844b5b56caf986",
-                "reference": "aff5b0d9c0315f3600e1ea5060844b5b56caf986",
+                "url": "https://api.github.com/repos/socodo/router/zipball/6be45b76124db6bf49456711b60da40f7047b52e",
+                "reference": "6be45b76124db6bf49456711b60da40f7047b52e",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.1",
                 "socodo/http": "^0.0.2"
+            },
+            "require-dev": {
+                "codeception/codeception": "^5.0",
+                "codeception/module-asserts": "*"
             },
             "type": "library",
             "autoload": {
@@ -347,9 +351,9 @@
             "description": "Router component for socodo.",
             "support": {
                 "issues": "https://github.com/socodo/router/issues",
-                "source": "https://github.com/socodo/router/tree/0.0.4"
+                "source": "https://github.com/socodo/router/tree/0.0.5"
             },
-            "time": "2022-11-19T06:10:40+00:00"
+            "time": "2022-11-19T11:07:33+00:00"
         }
     ],
     "packages-dev": [],

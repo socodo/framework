@@ -19,7 +19,7 @@
         "ext-fileinfo": "*",
         "socodo/injection": "^0.0.1",
         "socodo/http": "^0.0.2",
-        "socodo/router": "^0.0.4",
+        "socodo/router": "^0.0.5",
         "psr/http-server-handler": "1.0.x-dev"
     }
 }

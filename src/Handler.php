@@ -5,9 +5,12 @@ namespace Socodo\Framework;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use ReflectionAttribute;
+use ReflectionClass;
 use ReflectionMethod;
 use ReflectionParameter;
 use Socodo\Framework\Interfaces\ApplicationInterface;
+use Socodo\Framework\Interfaces\GuardInterface;
 use Socodo\Framework\Interfaces\StructureInterface;
 use Socodo\Http\Enums\HttpMethods;
 use Socodo\Http\Response;
@@ -70,6 +73,17 @@ class Handler implements RequestHandlerInterface
             if (is_array($matched['controller']))
             {
                 [ $className, $methodName ] = $matched['controller'];
+                if ($guards = $this->getGuards($className, $methodName))
+                {
+                    foreach ($guards as $guard)
+                    {
+                        if ($guard->isGuarded($request))
+                        {
+                            throw new \Exception('wip: guarded by ' . get_class($guard) . '.');
+                        }
+                    }
+                }
+
                 if ($body = $this->getBodyParameter($className, $methodName))
                 {
                     /** @var StructureInterface $bodyClass */
@@ -86,6 +100,33 @@ class Handler implements RequestHandlerInterface
         catch (Throwable $e)
         {
             return $this->buildErrorResponse($e);
+        }
+    }
+
+    /**
+     * Get controller guards.
+     *
+     * @param string $className
+     * @param string $methodName
+     * @return array
+     */
+    protected function getGuards (string $className, string $methodName): array
+    {
+        try
+        {
+            $class = new ReflectionClass($className);
+            $attrs = $class->getAttributes(GuardInterface::class, ReflectionAttribute::IS_INSTANCEOF);
+
+            $method = new ReflectionMethod($className, $methodName);
+            $attrs = array_merge($attrs, $method->getAttributes(GuardInterface::class, ReflectionAttribute::IS_INSTANCEOF));
+
+            return array_map(static function (ReflectionAttribute $attr) {
+                return $attr->newInstance();
+            }, $attrs);
+        }
+        catch (Throwable)
+        {
+            return [];
         }
     }
 

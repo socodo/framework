@@ -4,7 +4,6 @@ namespace Socodo\Framework\Facades;
 
 use Socodo\Framework\Application;
 use Socodo\Injection\Exceptions\EntryNotFoundException;
-use Throwable;
 
 abstract class FacadeAbstract
 {
