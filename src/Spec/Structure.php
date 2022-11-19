@@ -2,9 +2,11 @@
 
 namespace Socodo\Framework\Spec;
 
+use InvalidArgumentException;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionClass;
 use ReflectionProperty;
+use Socodo\Framework\Exceptions\StructureResolutionException;
 use Socodo\Framework\Interfaces\StructureInterface;
 use Socodo\Http\Enums\HttpStatuses;
 use Socodo\Http\Response;
@@ -29,9 +31,9 @@ class Structure implements StructureInterface
      * Create an instance with a new status.
      *
      * @param HttpStatuses $status
-     * @return self
+     * @return static
      */
-    public function withStatus (HttpStatuses $status): self
+    public function withStatus (HttpStatuses $status): static
     {
         if ($this->status === $status)
         {
@@ -47,7 +49,6 @@ class Structure implements StructureInterface
      * Build a response.
      *
      * @return ResponseInterface
-     * @throws \Exception
      */
     public function buildResponse (): ResponseInterface
     {
@@ -58,13 +59,14 @@ class Structure implements StructureInterface
             $name = $property->getName();
             if (!isset($this->{$name}))
             {
-                throw new \Exception('wip: property not all set.'); // TODO
+                throw new StructureResolutionException(static::class . '::buildResponse() Cannot build response before all public properties are set, but property $' . $name . ' not set.');
             }
 
             $value = $this->{$name};
-            if ($value instanceof Structure)
+            if ($value instanceof StructureInterface)
             {
-                $data[$name] = $value->buildResponse();
+                $response = $value->buildResponse();
+                $data[$name] = json_decode((string) $response->getBody());
                 continue;
             }
 
@@ -73,5 +75,34 @@ class Structure implements StructureInterface
 
         $stream = new Stream(json_encode($data, JSON_PRETTY_PRINT));
         return (new Response())->withStatus($this->getStatus())->withHeader('Content-Type', 'application/json')->withBody($stream);
+    }
+
+    /**
+     * Create an instance from a given data.
+     *
+     * @param array|object $data
+     * @return static
+     */
+    public static function from (array|object $data): static
+    {
+        if (is_object($data))
+        {
+            $data = (array) $data;
+        }
+
+        $new = new static();
+        $properties = (new ReflectionClass(static::class))->getProperties(ReflectionProperty::IS_PUBLIC);
+        foreach ($properties as $property)
+        {
+            $name = $property->getName();
+            if (!isset($data[$name]))
+            {
+                throw new InvalidArgumentException(static::class . '::from() Argument #1 ($data) must contains key named "' . $name . '".');
+            }
+
+            $new->{$name} = $data[$name];
+        }
+
+        return $new;
     }
 }
