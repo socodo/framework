@@ -14,11 +14,10 @@
             "email": "socodo@qroffle.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^8.1",
         "ext-fileinfo": "*",
-        "socodo/injection": "dev-main",
+        "socodo/injection": "^0.0.1",
         "socodo/http": "^0.0.2",
         "socodo/router": "^0.0.4",
         "psr/http-server-handler": "1.0.x-dev"
