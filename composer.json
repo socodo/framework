@@ -19,7 +19,7 @@
         "php": "^8.1",
         "socodo/injection": "dev-main",
         "socodo/http": "dev-main",
-        "socodo/router": "^0.0.1",
+        "socodo/router": "^0.0.2",
         "psr/http-server-handler": "1.0.x-dev"
     }
 }
