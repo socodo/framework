@@ -5,6 +5,8 @@ namespace Socodo\Framework;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use ReflectionMethod;
+use ReflectionParameter;
 use Socodo\Framework\Interfaces\ApplicationInterface;
 use Socodo\Framework\Interfaces\StructureInterface;
 use Socodo\Http\Enums\HttpMethods;
@@ -68,6 +70,13 @@ class Handler implements RequestHandlerInterface
             if (is_array($matched['controller']))
             {
                 [ $className, $methodName ] = $matched['controller'];
+                if ($body = $this->getBodyParameter($className, $methodName))
+                {
+                    /** @var StructureInterface $bodyClass */
+                    $bodyClass = $body->getType()->getName();
+                    $matched['params'][$body->getName()] = $bodyClass::from(json_decode($request->getBody()));
+                }
+
                 $output = $this->app->call($className, $methodName, $matched['params']);
                 return $this->buildResponse($output);
             }
@@ -77,6 +86,35 @@ class Handler implements RequestHandlerInterface
         catch (Throwable $e)
         {
             return $this->buildErrorResponse($e);
+        }
+    }
+
+    /**
+     * Get reflector of body parameter from the method.
+     *
+     * @param string $className
+     * @param string $methodName
+     * @return ?ReflectionMethod
+     */
+    protected function getBodyParameter (string $className, string $methodName): ?ReflectionParameter
+    {
+        try
+        {
+            $method = new ReflectionMethod($className, $methodName);
+            $parameters = $method->getParameters();
+            foreach ($parameters as $parameter)
+            {
+                if (is_subclass_of($parameter->getType()->getName(), StructureInterface::class))
+                {
+                    return $parameter;
+                }
+            }
+
+            return null;
+        }
+        catch (Throwable)
+        {
+            return null;
         }
     }
 
