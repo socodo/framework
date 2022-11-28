@@ -3,6 +3,7 @@
 namespace Socodo\Framework;
 
 use Socodo\CLI\CLI;
+use Socodo\Framework\Commands\GenerateCommand;
 
 class Console
 {
@@ -53,6 +54,6 @@ class Console
      */
     protected function registerSocodoCommands (): void
     {
-        $this->cli->registerCommand('');
+        $this->cli->registerCommand(new GenerateCommand());
     }
 }
