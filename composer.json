@@ -22,6 +22,7 @@
         "socodo/injection": "^0.0.1",
         "socodo/http": "^0.0.2",
         "socodo/router": "^0.0.5",
-        "socodo/sdk": "dev-main"
+        "socodo/sdk": "dev-main",
+        "socodo/cli": "dev-main"
     }
 }

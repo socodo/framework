@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d973bc84e232c4a6ab557fdf97b000df",
+    "content-hash": "a4152673680f0852a694b8090ca9a2a8",
     "packages": [
         {
             "name": "behat/gherkin",
@@ -2315,6 +2315,44 @@
             "time": "2020-09-28T06:39:44+00:00"
         },
         {
+            "name": "socodo/cli",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/socodo/cli.git",
+                "reference": "18201ca5ca20d53908f26e55c6c0f07542d17d43"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/socodo/cli/zipball/18201ca5ca20d53908f26e55c6c0f07542d17d43",
+                "reference": "18201ca5ca20d53908f26e55c6c0f07542d17d43",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Socodo\\CLI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Qroffle Inc.",
+                    "email": "socodo@qroffle.com"
+                }
+            ],
+            "description": "CLI component for socodo.",
+            "support": {
+                "issues": "https://github.com/socodo/cli/issues",
+                "source": "https://github.com/socodo/cli/tree/main"
+            },
+            "time": "2022-11-28T09:57:37+00:00"
+        },
+        {
             "name": "socodo/http",
             "version": "0.0.2",
             "source": {
@@ -3671,7 +3709,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "psr/http-server-handler": 20,
-        "socodo/sdk": 20
+        "socodo/sdk": 20,
+        "socodo/cli": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
