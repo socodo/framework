@@ -6,9 +6,9 @@ use Exception;
 use Socodo\CLI\Commands\CommandAbstract;
 use Socodo\CLI\Enums\Colors;
 use Socodo\CLI\Writer;
-use Socodo\Framework\Application;
-use Socodo\Router\Interfaces\RouteCollectionInterface;
+use Socodo\Router\Loaders\AttributeLoader;
 use Socodo\SDK\SDK;
+use Socodo\SDK\SDKConfig;
 
 class BuildCommand extends CommandAbstract
 {
@@ -29,33 +29,59 @@ class BuildCommand extends CommandAbstract
     public function handle (Writer $writer, array $arguments = [], array $options = []): void
     {
         $cwd = getcwd();
-
         $path = trim($arguments[0] ?? '');
         if ($path === '')
         {
             $path = getcwd() . '/dist/';
         }
-        $path = realpath($path);
 
         try
         {
-            $max = 3;
+            $progress = [
+                /** Create a path, and use as realpath. */
+                static function () use (&$path) {
+                    if (!is_dir($path))
+                    {
+                        mkdir($path, 0777, true);
+                    }
+                    $path = realpath($path);
+                },
+
+                /** Load a RouteCollection. */
+                static function () use (&$collection) {
+                    $loader = new AttributeLoader('App\\');
+                    $collection = $loader->load();
+                },
+
+                /** Create a SDKConfig instance. */
+                static function () use (&$config) {
+                    $config = new SDKConfig();
+                },
+
+                /** Compile SDK. */
+                static function () use (&$path, &$config, &$collection) {
+                    $sdk = new SDK();
+                    $sdk->setConfig($config);
+                    $sdk->setRouteCollection($collection);
+                    $sdk->compile($path);
+                },
+
+                /** Install npm packages. */
+                static function () use (&$cwd, &$path) {
+                    chdir($path);
+                    system('npm install');
+                    chdir($cwd);
+                }
+            ];
+
+            $max = count($progress);
             $writer->progress(0, $max);
-
-            $collection = Application::$app->get(RouteCollectionInterface::class);
-            $writer->progress(1, $max);
-
-            $sdk = new SDK($collection);
-            $sdk->compile($path);
-            $writer->progress(2, $max);
-
-            chdir($path);
-            if (!system('npm install', $code))
+            foreach ($progress as $i => $closure)
             {
-                throw new Exception('Failed to execute npm install.', $code);
+                $closure();
+                $writer->progress($i + 1, $max);
             }
 
-            chdir($cwd);
             $writer->color(Colors::BLUE, 'SDK built successfully at "' . $path . '".');
         }
         catch (Exception $e)
@@ -65,7 +91,7 @@ class BuildCommand extends CommandAbstract
             $writer->color(Colors::RED, 'Failed to build a SDK. (' . $e->getCode() . ')');
             $writer->write('');
             $writer->color(Colors::PURPLE, 'Trace:');
-            var_dump($e);
+            $writer->color(Colors::LIGHT_GRAY, $e->getTraceAsString());
         }
     }
 }
