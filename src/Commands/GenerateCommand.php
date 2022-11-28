@@ -26,6 +26,8 @@ class GenerateCommand extends CommandAbstract
         }
 
         $this->addChildCommand(new GenerateControllerCommand());
+        $this->addChildCommand(new GenerateModelCommand());
+        $this->addChildCommand(new GenerateStructureCommand());
     }
 
     /**
@@ -62,7 +64,12 @@ class GenerateCommand extends CommandAbstract
             return;
         }
 
-        $generatedClass = ucfirst($name) . ucfirst($this->name);
+        $generatedClass = ucfirst($name);
+        if ($name === $this->name)
+        {
+            $generatedClass = 'The' . $generatedClass;
+        }
+
         $generatedRoot = $appRoot . '/src/' . ucfirst($this->name) . 's';
         $generatedPath = $generatedRoot . '/' . $generatedClass . '.php';
         if (file_exists($generatedPath))
