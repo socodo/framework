@@ -28,7 +28,7 @@ class GenerateControllerCommand extends GenerateCommand
         $lines[] = 'use Socodo\\Router\\Attributes\\Prefix;';
         $lines[] = 'use Socodo\\Router\\Attributes\\Get;';
         $lines[] = '';
-        $lines[] = '#[Prefix(\'/' . substr(strtolower($className), 0, -10) . '\')]';
+        $lines[] = '#[Prefix(\'/' . strtolower($className) . '\')]';
         $lines[] = 'class ' . $className . ' extends Controller';
         $lines[] = '{';
         $lines[] = '    /**';
