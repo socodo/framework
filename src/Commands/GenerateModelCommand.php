@@ -24,7 +24,8 @@ class GenerateModelCommand extends GenerateCommand
         $lines[] = 'namespace App\\Models;';
         $lines[] = '';
         $lines[] = 'use Socodo\\ORM\\Model;';
-        $lines[] = 'use Socodo\\ORM\\Attributes\\Table';
+        $lines[] = 'use Socodo\\ORM\\Attributes\\Table;';
+        $lines[] = 'use Socodo\\ORM\\Attributes\\AutoIncrement;';
         $lines[] = '';
         $lines[] = '#[Table(\'' . strtolower($className) . '\')]';
         $lines[] = 'class ' . $className . ' extends Model';

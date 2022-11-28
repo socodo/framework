@@ -23,6 +23,7 @@
         "socodo/http": "^0.0.2",
         "socodo/router": "^0.0.5",
         "socodo/sdk": "dev-main",
-        "socodo/cli": "dev-main"
+        "socodo/cli": "dev-main",
+        "socodo/orm": "dev-main"
     }
 }

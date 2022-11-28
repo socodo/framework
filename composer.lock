@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a4152673680f0852a694b8090ca9a2a8",
+    "content-hash": "6fac878d8d5796276aed8a8e9653724f",
     "packages": [
         {
             "name": "behat/gherkin",
@@ -2445,6 +2445,52 @@
             "time": "2022-11-19T06:40:26+00:00"
         },
         {
+            "name": "socodo/orm",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/socodo/orm.git",
+                "reference": "3e7c7562081405af2a0370d981a3db9021eb80bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/socodo/orm/zipball/3e7c7562081405af2a0370d981a3db9021eb80bd",
+                "reference": "3e7c7562081405af2a0370d981a3db9021eb80bd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-pdo": "*"
+            },
+            "require-dev": {
+                "codeception/codeception": "^5.0",
+                "codeception/module-asserts": "*",
+                "codeception/module-db": "^3.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Socodo\\ORM\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Qroffle Inc.",
+                    "email": "socodo@qroffle.com"
+                }
+            ],
+            "description": "ORM component for socodo.",
+            "support": {
+                "issues": "https://github.com/socodo/orm/issues",
+                "source": "https://github.com/socodo/orm/tree/main"
+            },
+            "time": "2022-11-25T17:19:01+00:00"
+        },
+        {
             "name": "socodo/router",
             "version": "0.0.5",
             "source": {
@@ -3713,7 +3759,8 @@
     "stability-flags": {
         "psr/http-server-handler": 20,
         "socodo/sdk": 20,
-        "socodo/cli": 20
+        "socodo/cli": 20,
+        "socodo/orm": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
