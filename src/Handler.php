@@ -186,14 +186,7 @@ class Handler implements RequestHandlerInterface
             $stream = $output;
             $contentType = mime_content_type($output->getMetadata('uri'));
         }
-
-        if (is_string($output))
-        {
-            $stream = new Stream($output);
-            $contentType = 'text/plain';
-        }
-
-        if (is_array($output) || is_object($output))
+        elseif (is_string($output) || is_numeric($output) || is_bool($output) || is_array($output) || is_object($output))
         {
             $stream = new Stream(json_encode($output, JSON_PRETTY_PRINT));
             $contentType = 'application/json';
