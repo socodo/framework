@@ -70,6 +70,7 @@ class BuildCommand extends CommandAbstract
                 static function () use (&$cwd, &$path) {
                     chdir($path);
                     system('npm install');
+                    system('npm run build');
                     chdir($cwd);
                 }
             ];

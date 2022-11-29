@@ -242,6 +242,64 @@
             "time": "2022-09-27T06:17:39+00:00"
         },
         {
+            "name": "codeception/module-asserts",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Codeception/module-asserts.git",
+                "reference": "1b6b150b30586c3614e7e5761b31834ed7968603"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Codeception/module-asserts/zipball/1b6b150b30586c3614e7e5761b31834ed7968603",
+                "reference": "1b6b150b30586c3614e7e5761b31834ed7968603",
+                "shasum": ""
+            },
+            "require": {
+                "codeception/codeception": "*@dev",
+                "codeception/lib-asserts": "^2.0",
+                "php": "^8.0"
+            },
+            "conflict": {
+                "codeception/codeception": "<5.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Bodnarchuk"
+                },
+                {
+                    "name": "Gintautas Miselis"
+                },
+                {
+                    "name": "Gustavo Nieves",
+                    "homepage": "https://medium.com/@ganieves"
+                }
+            ],
+            "description": "Codeception module containing various assertions",
+            "homepage": "https://codeception.com/",
+            "keywords": [
+                "assertions",
+                "asserts",
+                "codeception"
+            ],
+            "support": {
+                "issues": "https://github.com/Codeception/module-asserts/issues",
+                "source": "https://github.com/Codeception/module-asserts/tree/3.0.0"
+            },
+            "time": "2022-02-16T19:48:08+00:00"
+        },
+        {
             "name": "codeception/stub",
             "version": "4.0.2",
             "source": {
@@ -2541,16 +2599,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/socodo/sdk.git",
-                "reference": "d2cb3d7070f69aa9c4644e218ad665e38c0ab4d6"
+                "reference": "4b3d13e217243d15b4e4db2aac3edc52416e84dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/socodo/sdk/zipball/d2cb3d7070f69aa9c4644e218ad665e38c0ab4d6",
-                "reference": "d2cb3d7070f69aa9c4644e218ad665e38c0ab4d6",
+                "url": "https://api.github.com/repos/socodo/sdk/zipball/4b3d13e217243d15b4e4db2aac3edc52416e84dc",
+                "reference": "4b3d13e217243d15b4e4db2aac3edc52416e84dc",
                 "shasum": ""
             },
             "require": {
                 "codeception/codeception": "^5.0",
+                "codeception/module-asserts": "*",
                 "php": "^8.1",
                 "socodo/router": "^0.0.5"
             },
@@ -2576,7 +2635,7 @@
                 "issues": "https://github.com/socodo/sdk/issues",
                 "source": "https://github.com/socodo/sdk/tree/main"
             },
-            "time": "2022-11-27T09:13:03+00:00"
+            "time": "2022-11-29T09:46:45+00:00"
         },
         {
             "name": "symfony/console",
